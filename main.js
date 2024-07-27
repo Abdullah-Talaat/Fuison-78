@@ -840,7 +840,7 @@ if (passwordLog.value.trim() !== "" && nameLog.value.trim() !== "") {
       if (passwordLog.value.trim().toLocaleLowerCase() === user.password.toLocaleLowerCase() && nameLog.value.trim().toLocaleLowerCase() === user.phone.toLocaleLowerCase()) {
         userLogin = true;
         nameInput = user.name;
-        imgProUrl = user.proImg;
+        imgProUrl = imgProUrl;
         uId = user.id;
         break; // الخروج من الحلقة بعد العثور على المستخدم
       }
@@ -1215,7 +1215,7 @@ function searcher(value) {
               </div>
               <div class="pro-post">
                 <p>${posts[i].name}</p>
-                <img class="pro-c" src="pro1.jpeg" alt="">
+                <img class="pro-c" src="${posts[i].name}" alt="">
               </div>
             </div>
             <div class="post-info">
@@ -1249,12 +1249,12 @@ function searcher(value) {
     if (found) {
       document.getElementById("posts").innerHTML = postn;
     } else {
-      document.getElementById("posts").innerHTML = '<p class="p-nan">لا توجد نتائج مطابقة للبحث</p>'
+      document.getElementById("posts").innerHTML = '<p class="p-nan">لا توجد نتائج مطابقة للبحث</p>';
     }
+  } else {
+    document.getElementById("posts").innerHTML = ''; // مسح المحتوى في حالة عدم وجود قيمة للبحث
   }
-  
-}
-function searchere(value) {
+}function searchere(value) {
   let searchPost = "";
   let found = false;
   let foundOpject = false;
