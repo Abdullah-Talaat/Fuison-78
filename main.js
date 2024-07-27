@@ -669,24 +669,25 @@ const storage = firebase.storage();
 
 let imgProUrl = "pro1.jpeg";
 let fileImgPro = document.getElementById("profileImageInput");
+
 async function getImgProfile() {
   lodingSean(true);
   let file = fileImgPro.files[0];
+
   if (file) {
     let storageRef = storage.ref().child(`profile/${file.name}`);
     try {
       await storageRef.put(file);
       imgProUrl = await storageRef.getDownloadURL();
       lodingSean(false);
-      alertt(imgProUrl,"green")
-    }
-    catch (error) {
+      alertt(imgProUrl, "green");
+    } catch (error) {
       lodingSean(false);
-      alertt(`error is:${error}`,"red")
+      alertt(`Error is: ${error}`, "red");
     }
-  }
-  else {
-    console.log("img is not defined")
+  } else {
+    lodingSean(false); // تأكد من إيقاف مؤشر التحميل في حالة عدم وجود ملف
+    alertt("Image is not defined", "red"); // استخدام تنبيه بدلاً من console.log
   }
 }
 let users = JSON.parse(localStorage.getItem("usersvf")) || [];
